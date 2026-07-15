@@ -14,7 +14,6 @@
 
 // Note: If a question says ‘return’, your function should use return. If it says ‘print’, use console.log.” Test your functions with several different inputs to make sure they work in all cases.
 
-
 // ---------- QUESTION 1 ----------
 // Write a function called 'repeat' that takes 1 integer parameter and, using a for or while loop, prints out the string "Hello World!" to the console the same number of times as the parameter. Place your console.log inside the function so the message prints during each loop iteration. NOTE: for this question, since your console log should be inside your function, you only need to call/invoke the function after you write it rather than call/invoke it inside of a console.log.
 
@@ -26,6 +25,17 @@
 //  Hello World!
 
 // PUT YOUR CODE HERE
+const repeat = (num) => {
+  for (let i = 0; i < num; i++) {
+    console.log("Hello World!");
+  }
+};
+repeat(5);
+// Hello World!
+// Hello World!
+// Hello World!
+// Hello World!
+// Hello World!
 
 // ---------- QUESTION 2 ----------
 // Write a function called 'pyramidCounting' that takes 1 integer parameter and returns the sum of all of the numbers between 0 and the parameter. Your loop should include the parameter value itself (e.g., if the input is 4, include 4 in the sum.
@@ -38,6 +48,17 @@
 
 // PUT YOUR CODE HERE
 
+const pyramidCounting = (num) => {
+  let currentIndex = 0;
+  for (let i = 0; i <= num; i++) {
+    currentIndex = currentIndex + i;
+  }
+  return currentIndex;
+};
+
+console.log("Q2: ", pyramidCounting(4));
+//Q2:  10
+
 // ---------- QUESTION 3 ----------
 // Write a function called 'noVowels' that take a string parameter and removes vowels from that string using a loop. Assume the input will be lowercase, but bonus if you handle uppercase too.
 
@@ -48,6 +69,22 @@
 
 // PUT YOUR CODE HERE
 
+const noVowels = (word) => {
+  let newWord = "";
+  let vowels = "aeiouyAEIOUY";
+
+  for (let i = 0; i <= word.length - 1; i++) {
+    let char = word[i];
+    if (!vowels.includes(char)) {
+      newWord = newWord + char;
+    }
+  }
+  return newWord;
+};
+
+console.log("Q3: ", noVowels("adventurous"));
+//Q3:  dvntrs
+
 // ---------- QUESTION 4 ----------
 // Write a function called 'vowelCount' that takes 1 string parameter and returns the number of vowels in that string. Your function should count both uppercase and lowercase vowels.
 
@@ -57,6 +94,22 @@
 //  Q4: 6
 
 // PUT YOUR CODE HERE
+const vowelCount = (string) => {
+  let vowels = "AEIOUYaeiouy";
+  let newWord = "";
+
+  for (let i = 0; i <= string.length - 1; i++) {
+    let char = string[i];
+
+    if (vowels.includes(char)) {
+      newWord = newWord + char;
+    }
+  }
+  return newWord.length;
+};
+
+console.log("Q4: ", vowelCount("I love to code."));
+//  Q4: 6
 
 // ---------- QUESTION 5 ----------
 // Write a function called 'numOfOdds' that takes 1 integer parameter and returns the number of odd numbers between 0 and that number, including the number itself if it's odd. (Hint: Use the modulo operator)
@@ -68,6 +121,20 @@
 // The numbers being counted are 1, 3, 5, 7, 9, 11, 13, 15 - that's 8 odd numbers, including 15 itself.
 
 // PUT YOUR CODE HERE
+
+const numOfOdds = (num) => {
+  let count = 0;
+
+  for (let i = 0; i <= num; i++) {
+    if (i % 2 !== 0) {
+      count += 1;
+    }
+  }
+  return count;
+};
+
+console.log("Q5: ", numOfOdds(15));
+// Q5: 8
 
 // ---------- QUESTION 6 ----------
 // Create two variables named 'empty' and 'full'. Assign an empty array to the 'empty' variable and any array of strings or numbers to the 'full' variable. Write a function called 'arrayChecker' that returns true if the array passed as a parameter is empty and false if not. Check both the 'empty' and 'full' variables to make sure they are returning the expected values. Return the boolean values true or false (not strings)
@@ -81,6 +148,22 @@
 
 // PUT YOUR CODE HERE
 
+const empty = [];
+const full = ["dream", 19, "code", 24, 180];
+
+const arrayChecker = (array) => {
+  if (array.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+console.log("Q6 empty: ", arrayChecker(empty));
+//  Q6 empty: true
+console.log("Q6 not empty: ", arrayChecker(full));
+//  Q6 not empty: false
+
 // ---------- QUESTION 7 ----------
 // Write a function called 'getElementAt' that takes an array parameter and an integer parameter. The function should return the element in the array at the given number index or 'null' if it doesn't exist. If the index is out of range, return null (not undefined). Use your 'full' variable from Question 6 to test.
 
@@ -93,6 +176,18 @@
 //  Q7: null
 
 // PUT YOUR CODE HERE
+const getElementAt = (array, index) => {
+  if (index < 0 || index >= array.length) {
+    return null;
+  }
+
+  return array[index];
+};
+
+console.log("Q7: ", getElementAt(full, 2));
+//Q7:  code
+console.log("Q7: ", getElementAt(full, 7));
+// Q7:  null
 
 // ---------- QUESTION 8 ----------
 // Write a function called 'insertInArray' that takes an array parameter, makes a NEW array with the value '0' inserted at the second position in the NEW array. The function should return the NEW array. Do not modify the original array — see slice hint. Use your 'full' variable from Question 6 to test. NOTE: Assigning an array to a new variable does not make a copy, it's another reference to the same array. Hint: To make a copy you can use the slice() method as in this example:
@@ -108,6 +203,18 @@
 //  original array: ["dream", 19, "code", 24, 180]
 
 // PUT YOUR CODE HERE
+const insertInArray = (originalArray) => {
+  let newArray = originalArray.slice();
+
+  newArray.splice(1, 0, 0);
+
+  return newArray;
+};
+
+console.log("Q8: ", insertInArray(full));
+//  Q8: ["dream", 0, 19, "code", 24, 180]
+console.log("original array: ", full);
+//  original array: ["dream", 19, "code", 24, 180]
 
 // ---------- QUESTION 9 ----------
 // Write a function called 'compareArrays' that takes two Array parameters (containing numbers or strings only) and returns true if they are equal, false if not.  The purpose of this function should be to look at each element of the two arrays and compare them, returning false when they either hit two items that don't match, or returning false if the two arrays themselves are different lengths. You can test this with the 'empty' and 'full' variables from Question 6, and/or you can create a variable called 'compare' and assign it an array identical to 'full' to compare those. To further test your function's accuracy, create a new variable called 'part' that is a partial copy of the 'full' variable and test that as well. Hint: First check whether the arrays are the same length. If not, return false immediately.
@@ -130,6 +237,29 @@
 //  Q9 partial: false
 
 // PUT YOUR CODE HERE
+const compare = ["dream", 19, "code", 24, 180];
+const part = ["dream", 19, "code"];
+
+const compareArrays = (array1, array2) => {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    if (array1[i] !== array2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+console.log("Q9 same: ", compareArrays(full, compare));
+//Q9 same:  true
+console.log("Q9 different: ", compareArrays(full, empty));
+//Q9 different:  false
+console.log("Q9 partial: ", compareArrays(full, part));
+//Q9 partial:  false
 
 // ---------- QUESTION 10 ----------
 // Create a variable called 'numbers' and assign it an array with at least 3 numbers as elements (example: [10, 3, 4]). Write a function called 'calculateTotal' that takes one array parameter and loops through the array in order to return the sum of all the array elements. Hint: Start your total at 0 before looping
@@ -141,6 +271,21 @@
 //  Q10: 17
 
 // PUT YOUR CODE HERE
+
+const numbers = [10, 3, 4];
+
+const calculateTotal = (array) => {
+  let total = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    total = total + array[i];
+  }
+
+  return total;
+};
+
+console.log("Q10: ", calculateTotal(numbers));
+//Q10:  17
 
 // ---------- QUESTION 11 ----------
 // Write two functions called 'findEvens' and 'findOdds' that each take one array parameter and each function returns a NEW Array of only the even or odd numbers as indicated. NOTE: Assigning an array to a new variable does not make a copy, it's another reference to the same array. To make a copy you can use the slice() method as in this example:
@@ -156,6 +301,37 @@
 
 // PUT YOUR CODE HERE
 
+const findEvens = (array) => {
+  let evens = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let num = array[i];
+
+    if (num % 2 === 0) {
+      evens.push(num);
+    }
+  }
+  return evens;
+};
+
+const findOdds = (array) => {
+  let odds = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let num = array[i];
+
+    if (num % 2 !== 0) {
+      odds.push(num);
+    }
+  }
+  return odds;
+};
+
+console.log("Q11 evens: ", findEvens([10, 2, 3, 19, 7, 6, 93]));
+//Q11 evens:  [ 10, 2, 6 ]
+console.log("Q11 odds: ", findOdds([10, 2, 3, 19, 7, 6, 93]));
+//Q11 odds:  [ 3, 19, 7, 93 ]
+
 // ---------- QUESTION 12 ----------
 // Write a function called 'makeSquares' that takes one array parameter and returns a NEW Array with the squared values of each of the numbers. NOTE: Assigning an array to a new variable does not make a copy, it's another reference to the same array. To make a copy you can use the slice() method as in this example:
 // let newArray = originalArray.slice()
@@ -166,6 +342,22 @@
 //  Q12: [4,25,64]
 
 // PUT YOUR CODE HERE
+const makeSquares = (array) => {
+  let squaredArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let originalNumber = array[i];
+
+    let squaredValue = originalNumber * originalNumber;
+
+    squaredArray.push(squaredValue);
+  }
+
+  return squaredArray;
+};
+
+console.log("Q12: ", makeSquares([2, 5, 8]));
+//Q12:  [ 4, 25, 64 ]
 
 // ---------- QUESTION 13 ----------
 // Write a function called 'displaySkills' that takes an array of string values that correspond to skills that you have.
@@ -182,12 +374,24 @@
 //  GitHub
 
 // PUT YOUR CODE HERE
+const displaySkills = (skillsArray) => {
+  for (let i = 0; i < skillsArray.length; i++) {
+    console.log(skillsArray[i]);
+  }
+};
 
+const skills = ["JavaScript", "HTML", "CSS", "Adobe Photoshop", "GitHub"];
+displaySkills(skills);
+// JavaScript
+// HTML
+// CSS
+// Adobe Photoshop
+// GitHub
 
 // ---------- QUESTION 14 ----------
-// In the early 2000s, this was a famous technical interview question: 
-// Write a function called 'fizzBuzz' that takes NO parameters. 
-// - The function will loop from 1 to 15 and return an array of numbers. 
+// In the early 2000s, this was a famous technical interview question:
+// Write a function called 'fizzBuzz' that takes NO parameters.
+// - The function will loop from 1 to 15 and return an array of numbers.
 // - While looping, the function will check if the current value in the loop is divisible by 3, by 5, or by both.
 // - If the current value in the loop is divisible by 3, the function will add the string "fizz" to an array.
 // - If the current value in the loop is divisible by 5, the function will add the string "buzz" to the array.
@@ -202,11 +406,39 @@
 //  Q14: [1,2,'fizz',4,'buzz','fizz',7,8,'fizz','buzz',11,'fizz',13,14,'fizzbuzz']
 
 // PUT YOUR CODE HERE
+const fizzBuzz = () => {
+  let result = [];
 
+  for (let i = 1; i <= 15; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      result.push("fizzbuzz");
+    } else if (i % 3 === 0) {
+      result.push("fizz");
+    } else if (i % 5 === 0) {
+      result.push("buzz");
+    } else {
+      result.push(i);
+    }
+  }
+
+  return result;
+};
+
+console.log("Q14: ", fizzBuzz());
+// Q14:  [
+//   1,          2,
+//   'fizz',     4,
+//   'buzz',     'fizz',
+//   7,          8,
+//   'fizz',     'buzz',
+//   11,         'fizz',
+//   13,         14,
+//   'fizzbuzz'
+// ]
 
 // ---------- QUESTION 15 ----------
 // Write a function called testScope that shows the difference between global, function and block scope.
-// Create 3 variables - 
+// Create 3 variables -
 //  let globalVar = "globarVar";
 //  let functionVar = "functionVar";
 //  let blockVar = "blockVar";
@@ -220,3 +452,33 @@
 // your code itself, including the two commented-out lines that demonstrate scope errors.
 
 // PUT YOUR CODE HERE
+
+let globalVar = "globalVar";
+
+const testScope = () => {
+  let functionVar = "functionVar";
+
+  console.log("Inside function: " + globalVar);
+  //Inside function: globalVar
+  console.log("Inside function: " + functionVar);
+  //Inside function: functionVar
+
+  if (true) {
+    let blockVar = "blockVar";
+
+    console.log("Inside block: " + globalVar);
+    //Inside block: globalVar
+    console.log("Inside block: " + functionVar);
+    //Inside block: functionVar
+    console.log("Inside block: " + blockVar);
+    //Inside block: blockVar
+  }
+
+  //console.log(blockVar);
+  // ReferenceError: blockVar is not defined
+};
+
+testScope();
+
+//console.log(functionVar);
+// ReferenceError: functionVar is not defined
