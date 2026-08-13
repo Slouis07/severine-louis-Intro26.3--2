@@ -53,15 +53,30 @@ body {
 
 .hero-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 1.5rem 0 2.5rem 0;
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e3a8a;
-  letter-spacing: -0.5px;
+  font-size: 2.75rem;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #2563eb;
+  margin: 0.5rem auto 0 auto;
+  border-radius: 2px;
 }
 
 h2 {
@@ -100,7 +115,7 @@ section {
 .experience-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-
+  border-top: 3px solid #0f172a;
   padding: 1.25rem 1.5rem;
   border-radius: 8px;
   display: flex;
