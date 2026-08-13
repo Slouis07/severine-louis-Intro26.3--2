@@ -11,13 +11,12 @@ html {
 body {
   background-color: #f1f5f9;
   color: #334155;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
   padding: 1rem 1rem 3rem 1rem;
 }
-
 
 .main-header {
   position: sticky;
@@ -52,7 +51,6 @@ body {
   color: #2563eb;
 }
 
-
 .hero-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -83,7 +81,6 @@ section {
   margin-bottom: 1.75rem;
 }
 
-
 #About {
   text-align: center;
 }
@@ -92,7 +89,6 @@ section {
   color: #475569;
   font-size: 1.05rem;
 }
-
 
 .experience-list {
   list-style: none;
@@ -104,13 +100,15 @@ section {
 .experience-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-  border-top: 3px solid #0f172a; /* Subtle dark slate top accent */
+
   padding: 1.25rem 1.5rem;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .experience-card:hover {
@@ -136,7 +134,7 @@ section {
 .job-dates {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #64748b; /* Clean text date, no background pill */
+  color: #64748b;
 }
 
 .job-description {
@@ -145,12 +143,10 @@ section {
   line-height: 1.5;
 }
 
-
 #Skills,
 #Projects {
   min-height: 100px;
 }
-
 
 #Connect {
   text-align: center;
@@ -178,7 +174,10 @@ section {
   font-weight: 600;
   font-size: 0.95rem;
   box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .connect-list a:hover,
