@@ -163,6 +163,45 @@ section {
   min-height: 100px;
 }
 
+#Skills ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+#Skills li {
+  background-color: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+
+#Skills li:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
+}
+
+
+
+
+
+
+
+
+
+
 #Connect {
   text-align: center;
 }
@@ -201,3 +240,7 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(29, 78, 216, 0.4);
 }
+
+
+
+
