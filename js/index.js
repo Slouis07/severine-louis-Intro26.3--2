@@ -90,6 +90,19 @@ fetch("https://api.github.com/users/Slouis07/repos")
   .then((data) => {
     const repositories = data;
     console.log(repositories);
+
+    // Select the Projects section by id
+    const projectSection = document.getElementById("Projects");
+
+    // Query projectSection to find its <ul> element
+    const projectList = projectSection.querySelector("ul");
+
+    // Loop through the repositories array and add each to the list
+    for (let i = 0; i < repositories.length; i++) {
+      const project = document.createElement("li");
+      project.innerText = repositories[i].name;
+      projectList.appendChild(project);
+    }
   })
   .catch((error) => {
     console.error("Error fetching repositories:", error);
