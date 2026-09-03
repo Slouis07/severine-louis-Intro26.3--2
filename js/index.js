@@ -53,6 +53,35 @@ messageForm.addEventListener("submit", function (event) {
   console.log("Email:", usersEmail);
   console.log("Message:", usersMessage);
 
+  // Select the #messages section by id
+  const messageSection = document.getElementById("messages");
+
+  // Query messageSection to find its <ul> element
+  const messageList = messageSection.querySelector("ul");
+
+  // Create a new list item element <li>
+  const newMessage = document.createElement("li");
+
+  // Set inner HTML with clickable mailto link and message content
+  newMessage.innerHTML = `<a href="mailto:${usersEmail}">${usersName}</a> <span>wrote: ${usersMessage} </span>`;
+
+  // Create remove button
+  const removeButton = document.createElement("button");
+  removeButton.innerText = "remove";
+  removeButton.setAttribute("type", "button");
+
+  // Event listener to remove entry on click
+  removeButton.addEventListener("click", function () {
+    const entry = removeButton.parentNode;
+    entry.remove();
+  });
+
+  // Append remove button to message entry
+  newMessage.appendChild(removeButton);
+
+  // Append message entry to the list
+  messageList.appendChild(newMessage);
+
   // Reset the form fields after submission
   messageForm.reset();
 });
