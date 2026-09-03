@@ -192,6 +192,43 @@ section {
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
 }
 
+
+
+#Projects ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+#Projects li {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  border-top: 3px solid #2563eb;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  flex: 1 1 calc(50% - 1rem);
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+#Projects li:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  border-top-color: #1d4ed8;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
 #Connect {
   text-align: center;
 }
@@ -230,8 +267,6 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(29, 78, 216, 0.4);
 }
-
-
 
 #Leave-a-Message form {
   display: flex;
@@ -296,7 +331,6 @@ section {
   box-shadow: 0 4px 10px rgba(29, 78, 216, 0.4);
 }
 
-
 #messages ul {
   list-style: none;
   display: flex;
@@ -358,6 +392,10 @@ section {
 @media (max-width: 600px) {
   section {
     padding: 1.25rem 1rem;
+  }
+
+  #Projects li {
+    flex: 1 1 100%;
   }
 
   #Leave-a-Message button[type="submit"] {
