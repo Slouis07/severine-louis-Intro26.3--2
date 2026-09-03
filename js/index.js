@@ -34,3 +34,25 @@ for (let i = 0; i < skills.length; i++) {
   // append the skill element to skillsList
   skillsList.appendChild(skill);
 }
+
+// Select the leave_message form by name attribute
+const messageForm = document.querySelector('form[name="leave_message"]');
+
+// Add submit event listener to the form
+messageForm.addEventListener("submit", function (event) {
+  // Prevent default page refresh behavior
+  event.preventDefault();
+
+  // Retrieve input field values from the form event
+  const usersName = event.target.usersName.value;
+  const usersEmail = event.target.usersEmail.value;
+  const usersMessage = event.target.usersMessage.value;
+
+  // Log the values to the browser console
+  console.log("Name:", usersName);
+  console.log("Email:", usersEmail);
+  console.log("Message:", usersMessage);
+
+  // Reset the form fields after submission
+  messageForm.reset();
+});
