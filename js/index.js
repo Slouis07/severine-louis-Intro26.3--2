@@ -84,6 +84,13 @@ messageForm.addEventListener("submit", function (event) {
   messageForm.reset();
 });
 
-// fetch repositories from GitHub API
+// Fetch repositories from GitHub API
 fetch("https://api.github.com/users/Slouis07/repos")
-  .then((response) => response.json());
+  .then((response) => response.json())
+  .then((data) => {
+    const repositories = data;
+    console.log(repositories);
+  })
+  .catch((error) => {
+    console.error("Error fetching repositories:", error);
+  });
