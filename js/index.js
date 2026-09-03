@@ -83,3 +83,7 @@ messageForm.addEventListener("submit", function (event) {
   // Reset the form fields after submission
   messageForm.reset();
 });
+
+// fetch repositories from GitHub API
+fetch("https://api.github.com/users/Slouis07/repos")
+  .then((response) => response.json());
