@@ -48,10 +48,8 @@ messageForm.addEventListener("submit", function (event) {
   const usersEmail = event.target.usersEmail.value;
   const usersMessage = event.target.usersMessage.value;
 
-  // Log the values to the browser console
-  console.log("Name:", usersName);
-  console.log("Email:", usersEmail);
-  console.log("Message:", usersMessage);
+  // Log the three variables in one statement to match requirement
+  console.log(usersName, usersEmail, usersMessage);
 
   // Select the #messages section by id
   const messageSection = document.getElementById("messages");
