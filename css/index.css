@@ -184,7 +184,6 @@ section {
   cursor: default;
 }
 
-
 #Skills li:hover {
   background-color: #2563eb;
   color: #ffffff;
@@ -192,15 +191,6 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
 }
-
-
-
-
-
-
-
-
-
 
 #Connect {
   text-align: center;
@@ -243,4 +233,143 @@ section {
 
 
 
+#Leave-a-Message form {
+  display: flex;
+  flex-direction: column;
+}
 
+#Leave-a-Message label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+#Leave-a-Message input[type="text"],
+#Leave-a-Message input[type="email"],
+#Leave-a-Message textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#Leave-a-Message input[type="text"]:focus,
+#Leave-a-Message input[type="email"]:focus,
+#Leave-a-Message textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+#Leave-a-Message textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+#Leave-a-Message button[type="submit"] {
+  align-self: flex-start;
+  min-height: 48px;
+  padding: 0.75rem 2rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#Leave-a-Message button[type="submit"]:hover,
+#Leave-a-Message button[type="submit"]:focus {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(29, 78, 216, 0.4);
+}
+
+
+#messages ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#messages li {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #2563eb;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+#messages li a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#messages li a:hover {
+  text-decoration: underline;
+}
+
+#messages li span {
+  color: #334155;
+  flex: 1 1 200px;
+}
+
+#messages li button {
+  min-height: 38px;
+  padding: 0.4rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ef4444;
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#messages li button:hover,
+#messages li button:focus {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+
+
+@media (max-width: 600px) {
+  section {
+    padding: 1.25rem 1rem;
+  }
+
+  #Leave-a-Message button[type="submit"] {
+    width: 100%;
+  }
+
+  #messages li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #messages li button {
+    align-self: flex-end;
+  }
+}
