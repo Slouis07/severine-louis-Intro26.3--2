@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore artwork and artist data from the Art Institute of Chicago API."
+    />
+    <title>Art Institute Explorer | Open API</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="index.html">← Back to Portfolio</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="hero-header">
+      <h1>Art Institute Explorer</h1>
+    </div>
+
+
+    <section id="api-navigation">
+      <h2>Select Data View</h2>
+      <p class="main-text">
+        Click a button below to query different endpoints from the Art Institute of Chicago API:
+      </p>
+      <div class="api-btn-container">
+        <button id="fetch-artworks-btn" type="button" class="api-btn">
+          View Featured Artworks
+        </button>
+        <button id="fetch-agents-btn" type="button" class="api-btn">
+          View Featured Artists
+        </button>
+      </div>
+    </section>
+
+
+    <section id="api-display">
+      <h2 id="display-title">Art Data</h2>
+      <div id="api-content">
+        <p class="placeholder-text">Select an option above to load data from the API.</p>
+      </div>
+    </section>
+
+    <footer></footer>
+    <script src="js/openapi.js"></script>
+  </body>
+</html>
