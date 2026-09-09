@@ -192,8 +192,6 @@ section {
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
 }
 
-
-
 #Projects ul {
   list-style: none;
   display: flex;
@@ -291,7 +289,9 @@ section {
   border-radius: 8px;
   background-color: #f8fafc;
   color: #0f172a;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 #Leave-a-Message input[type="text"]:focus,
@@ -321,7 +321,10 @@ section {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 #Leave-a-Message button[type="submit"]:hover,
@@ -377,7 +380,9 @@ section {
   border: 1px solid #fca5a5;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 #messages li button:hover,
@@ -386,8 +391,6 @@ section {
   color: #ffffff;
   border-color: #ef4444;
 }
-
-
 
 @media (max-width: 600px) {
   section {
