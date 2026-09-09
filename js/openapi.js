@@ -49,10 +49,10 @@ function fetchArtworks() {
         const item = document.createElement("li");
         item.className = "api-card";
 
-        // Construct standard IIIF image URL using the recommended 843px width
+        // Construct standard IIIF image URL
         const fullImageUrl = `${iiifBaseUrl}/${art.image_id}/full/843,/0/default.jpg`;
 
-        // Adding referrerpolicy="no-referrer" prevents local dev referrer blocking
+        // IMPORTANT, adding referrerpolicy="no-referrer" prevents local dev referrer blocking
         const imageHtml = `
           <img 
             src="${fullImageUrl}" 
@@ -85,7 +85,7 @@ function fetchAgents() {
   showLoading("artists");
   displayTitle.innerText = "Featured Artists";
 
-  // Request extra fields: birth_date, death_date, and filter for actual artists
+  // Requesting fields such as birth_date, death_date, and filter for actual artists
   fetch("https://api.artic.edu/api/v1/agents?limit=12&fields=id,title,type,birth_date,death_date,is_artist")
     .then((response) => {
       if (!response.ok) {
