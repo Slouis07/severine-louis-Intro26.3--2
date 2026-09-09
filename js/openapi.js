@@ -22,30 +22,49 @@ function fetchArtworks() {
   showLoading("artworks");
   displayTitle.innerText = "Featured Artworks";
 
-  // Issue a fresh GET request specifically for artworks endpoint
-  fetch("https://api.artic.edu/api/v1/artworks?limit=6&fields=id,title,artist_display,date_display")
+  // Fetch artworks that are in the public domain and contain valid images
+  fetch("https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=15&fields=id,title,artist_display,date_display,image_id")
     .then((response) => {
-      // Check if network response is healthy
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       return response.json();
     })
     .then((data) => {
-      const artworks = data.data;
+      // Filter out records without an image_id
+      const artworks = data.data
+        .filter((art) => art.image_id !== null && art.image_id !== undefined)
+        .slice(0, 6);
 
-      // Clear loading message
+      const iiifBaseUrl = (data.config && data.config.iiif_url) 
+        ? data.config.iiif_url 
+        : "https://www.artic.edu/iiif/2";
+
       apiContent.innerHTML = "";
 
-      // Create a list container for artwork items
       const list = document.createElement("ul");
       list.className = "api-data-list";
 
-      // Loop through returned artwork data and create list items
       artworks.forEach((art) => {
         const item = document.createElement("li");
         item.className = "api-card";
+
+        // Construct standard IIIF image URL using the recommended 843px width
+        const fullImageUrl = `${iiifBaseUrl}/${art.image_id}/full/843,/0/default.jpg`;
+
+        // Adding referrerpolicy="no-referrer" prevents local dev referrer blocking
+        const imageHtml = `
+          <img 
+            src="${fullImageUrl}" 
+            alt="${art.title || "Artwork"}" 
+            class="artwork-image" 
+            referrerpolicy="no-referrer"
+            style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 0.5rem;"
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200?text=Image+Unavailable';"
+          />`;
+
         item.innerHTML = `
+          ${imageHtml}
           <h3>${art.title || "Untitled"}</h3>
           <p><strong>Artist:</strong> ${art.artist_display || "Unknown"}</p>
           <p><strong>Date:</strong> ${art.date_display || "N/A"}</p>
@@ -64,10 +83,10 @@ function fetchArtworks() {
 // Endpoint 2 GET Request for Artists/Agents
 function fetchAgents() {
   showLoading("artists");
-  displayTitle.innerText = "Featured Artists & Entities";
+  displayTitle.innerText = "Featured Artists";
 
-  // Issue a GET request specifically for agents (artists) endpoint
-  fetch("https://api.artic.edu/api/v1/agents?limit=6&fields=id,title,type,birth_date,death_date")
+  // Request extra fields: birth_date, death_date, and filter for actual artists
+  fetch("https://api.artic.edu/api/v1/agents?limit=12&fields=id,title,type,birth_date,death_date,is_artist")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -75,24 +94,35 @@ function fetchAgents() {
       return response.json();
     })
     .then((data) => {
-      const agents = data.data;
+      // Filter out funds/donors to show only actual creators, taking the top 6
+      const artists = data.data
+        .filter((agent) => agent.is_artist === true)
+        .slice(0, 6);
 
-      // Clear loading message
       apiContent.innerHTML = "";
 
-      // Create a list container for artist items
       const list = document.createElement("ul");
       list.className = "api-data-list";
 
-      // Loop through returned artist data and create list items
-      agents.forEach((agent) => {
+      artists.forEach((artist) => {
         const item = document.createElement("li");
         item.className = "api-card";
-        const lifespan = agent.birth_date ? `${agent.birth_date} - ${agent.death_date || "Present"}` : "N/A";
+
+        // format lifespan string 
+        let lifespan = "Dates Unknown";
+        if (artist.birth_date && artist.death_date) {
+          lifespan = `${artist.birth_date} – ${artist.death_date}`;
+        } else if (artist.birth_date) {
+          lifespan = `b. ${artist.birth_date}`;
+        }
+
         item.innerHTML = `
-          <h3>${agent.title}</h3>
-          <p><strong>Type:</strong> ${agent.type || "Artist"}</p>
+          <div class="artist-badge" style="display:inline-block; padding: 2px 8px; background: #e0e0e0; font-size: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem; text-transform: uppercase;">
+            ${artist.type || "Creator"}
+          </div>
+          <h3 style="margin: 0.25rem 0;">${artist.title}</h3>
           <p><strong>Lifespan:</strong> ${lifespan}</p>
+          <p><strong>Catalog Ref:</strong> #${artist.id}</p>
         `;
         list.appendChild(item);
       });
@@ -105,6 +135,6 @@ function fetchAgents() {
     });
 }
 
-// Attach event listeners to navigation buttons to perform separate GET requests on click
+// Attach event listeners
 fetchArtworksBtn.addEventListener("click", fetchArtworks);
 fetchAgentsBtn.addEventListener("click", fetchAgents);
