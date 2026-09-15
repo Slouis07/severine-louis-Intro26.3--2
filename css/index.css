@@ -1,4 +1,3 @@
-/* Base Resets & Box Sizing */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,7 +14,6 @@ body {
   margin: 0 auto;
 }
 
-/* Typography */
 h1 {
   font-size: 2.25rem;
   font-weight: 700;
@@ -38,7 +36,6 @@ p.main-text {
   font-weight: 400;
 }
 
-/* Header & Navigation Bar */
 .main-header {
   margin-bottom: 2rem;
 }
@@ -76,7 +73,6 @@ p.main-text {
   margin-bottom: 2.5rem;
 }
 
-/* Section Spacing & Card Styling */
 section {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -85,7 +81,6 @@ section {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Lists (Skills, Projects, Connect) */
 ul {
   list-style: none;
 }
@@ -108,7 +103,7 @@ ul {
   align-items: center;
 }
 
-/* Clickable Project Links */
+/* project links (clickable) */
 #Projects li a {
   color: #0f172a;
   text-decoration: none;
@@ -142,7 +137,6 @@ ul {
   background-color: #1d4ed8;
 }
 
-/* Experience Section Cards */
 .experience-list {
   display: flex;
   flex-direction: column;
@@ -178,7 +172,6 @@ ul {
   color: #475569;
 }
 
-/* Messages Section & Form Styling */
 #messages ul {
   display: flex;
   flex-direction: column;
@@ -194,7 +187,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 #messages li a {
@@ -234,9 +227,9 @@ ul {
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #dc2626;
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+  color: #991b1b;
+  background-color: #f4f0f0;
+  border: 1px solid #991b1b;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -247,7 +240,6 @@ ul {
   color: #ffffff;
 }
 
-/* Leave-a-Message Form Layout */
 #Leave-a-Message form {
   display: flex;
   flex-direction: column;
@@ -304,7 +296,7 @@ ul {
   background-color: #1d4ed8;
 }
 
-/* Footer Section */
+
 footer {
   text-align: center;
   margin-top: 2rem;
@@ -336,7 +328,64 @@ footer {
   text-decoration: underline;
 }
 
-/* Responsive Layout Adjustments */
+
+/* Open API Page Specific Styles */
+.api-btn-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.api-btn {
+  min-height: 44px;
+  padding: 0.6rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.api-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.api-data-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.api-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.placeholder-text,
+.error-text {
+  color: #64748b;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.error-text {
+  color: #dc2626;
+  font-style: normal;
+  font-weight: 500;
+}
+
+
+
 @media (max-width: 600px) {
   body {
     padding: 1rem;
