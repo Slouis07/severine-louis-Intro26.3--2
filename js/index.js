@@ -1,106 +1,126 @@
 const today = new Date();
-
 const thisYear = today.getFullYear();
 
-//making <footer> element
+// Selecting <footer> element
 const footer = document.querySelector("footer");
 
-//making (<p>) element
+// Creating (<p>) element for copyright
 const copyright = document.createElement("p");
-
-//inner HTML for <p> element
 copyright.innerHTML = `&copy; ${thisYear} Severine Louis. All rights reserved.`;
 
-//append the copyright element to the footer
+// Append copyright to footer (before or after links)
 footer.appendChild(copyright);
 
-//array of my skills
+// Array of skills
 const skills = ["JavaScript", "HTML", "CSS", "React", "GitHub", "SQL"];
 
-// get my skills id from my html
+// Select Skills section and its <ul> element
 const skillsSection = document.getElementById("Skills");
-
-// Query skillsSection to select its <ul> element
 const skillsList = skillsSection.querySelector("ul");
 
-// loop over the skills array
+// Loop over skills array to build list
 for (let i = 0; i < skills.length; i++) {
-  //Create a new list item element <li>
   const skill = document.createElement("li");
-
-  // Set the inner text to the current array element
   skill.innerText = skills[i];
-
-  // append the skill element to skillsList
   skillsList.appendChild(skill);
+}
+
+// Select message section & list for conditional rendering and handling
+const messageSection = document.getElementById("messages");
+const messageList = messageSection.querySelector("ul");
+
+// Helper function to handle conditional display of Messages section
+function toggleMessageSection() {
+  if (messageList.children.length === 0) {
+    messageSection.style.display = "none";
+  } else {
+    messageSection.style.display = "block";
+  }
 }
 
 // Select the leave_message form by name attribute
 const messageForm = document.querySelector('form[name="leave_message"]');
 
-// Add submit event listener to the form
+// Submit event listener for message form
 messageForm.addEventListener("submit", function (event) {
-  // Prevent default page refresh behavior
   event.preventDefault();
 
-  // Retrieve input field values from the form event
   const usersName = event.target.usersName.value;
   const usersEmail = event.target.usersEmail.value;
   const usersMessage = event.target.usersMessage.value;
 
-  // Log the three variables in one statement to match requirement
   console.log(usersName, usersEmail, usersMessage);
 
-  // Select the #messages section by id
-  const messageSection = document.getElementById("messages");
-
-  // Query messageSection to find its <ul> element
-  const messageList = messageSection.querySelector("ul");
-
-  // Create a new list item element <li>
   const newMessage = document.createElement("li");
+  
+  // Wrapper for text content
+  const messageTextWrapper = document.createElement("span");
+  messageTextWrapper.innerHTML = `<a href="mailto:${usersEmail}">${usersName}</a> wrote: <span class="msg-content">${usersMessage}</span>`;
+  newMessage.appendChild(messageTextWrapper);
 
-  // Set inner HTML with clickable mailto link and message content
-  newMessage.innerHTML = `<a href="mailto:${usersEmail}">${usersName}</a> <span>wrote: ${usersMessage} </span>`;
+  // Button container for alignment
+  const buttonGroup = document.createElement("div");
+  buttonGroup.className = "message-buttons";
 
-  // Create remove button
+  // Edit Button 
+  const editButton = document.createElement("button");
+  editButton.innerText = "edit";
+  editButton.setAttribute("type", "button");
+  editButton.className = "btn-edit";
+
+  editButton.addEventListener("click", function () {
+    const msgSpan = messageTextWrapper.querySelector(".msg-content");
+    const newMsg = prompt("Edit your message:", msgSpan.innerText);
+    if (newMsg !== null && newMsg.trim() !== "") {
+      msgSpan.innerText = newMsg.trim();
+    }
+  });
+
+  // Remove Button
   const removeButton = document.createElement("button");
   removeButton.innerText = "remove";
   removeButton.setAttribute("type", "button");
+  removeButton.className = "btn-remove";
 
-  // Event listener to remove entry on click
   removeButton.addEventListener("click", function () {
-    const entry = removeButton.parentNode;
+    const entry = removeButton.closest("li");
     entry.remove();
+    toggleMessageSection();
   });
 
-  // Append remove button to message entry
-  newMessage.appendChild(removeButton);
+  buttonGroup.appendChild(editButton);
+  buttonGroup.appendChild(removeButton);
+  newMessage.appendChild(buttonGroup);
 
-  // Append message entry to the list
   messageList.appendChild(newMessage);
 
-  // Reset the form fields after submission
+  // Update visibility of messages section
+  toggleMessageSection();
+
   messageForm.reset();
 });
 
-// Fetch repositories from GitHub API
+// Fetch repositories from GitHub API and display as clickable links
 fetch("https://api.github.com/users/Slouis07/repos")
   .then((response) => response.json())
   .then((data) => {
     const repositories = data;
     console.log(repositories);
 
-    // Select the Projects section by id
     const projectSection = document.getElementById("Projects");
-
-    // Query projectSection to find its <ul> element
     const projectList = projectSection.querySelector("ul");
 
-    // Loop through the repositories array and add each to the list
     for (let i = 0; i < repositories.length; i++) {
       const project = document.createElement("li");
-      project.innerText = repositories[i].name;
+
+      // Clickable link for each repository
+      const repoLink = document.createElement("a");
+      repoLink.href = repositories[i].html_url;
+      repoLink.innerText = repositories[i].name;
+      repoLink.target = "_blank";
+      repoLink.rel = "noopener noreferrer";
+
+      project.appendChild(repoLink);
       projectList.appendChild(project);
     }
   })
